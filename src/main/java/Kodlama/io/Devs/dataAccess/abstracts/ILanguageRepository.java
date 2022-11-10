@@ -4,6 +4,7 @@ package Kodlama.io.Devs.dataAccess.abstracts;
 import Kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
 import Kodlama.io.Devs.entities.dtos.LanguageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
