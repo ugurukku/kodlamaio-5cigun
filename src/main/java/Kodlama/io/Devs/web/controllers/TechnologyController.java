@@ -2,6 +2,7 @@ package Kodlama.io.Devs.web.controllers;
 
 import Kodlama.io.Devs.business.abstracts.TechnologyService;
 import Kodlama.io.Devs.entities.concretes.SubTechnology;
+import Kodlama.io.Devs.entities.dtos.TechnologyRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,18 +25,19 @@ public class TechnologyController {
     }
 
     @PostMapping("/add")
-    public boolean addNewTechnology(@RequestBody SubTechnology technology) {
+    public boolean addNewTechnology(@RequestBody TechnologyRequest technology) {
         return service.addTechnology(technology);
     }
 
     @PostMapping("/update")
     public boolean updateTechnology(@RequestBody SubTechnology technology) {
-        return service.updateById(technology);
+        return service.updateById(technology, technology.getId());
     }
 
     @DeleteMapping("/remove/{id}")
     public boolean deleteTechnologyById(@PathVariable("id") Integer id) {
-        return service.deleteById(id);
+         service.deleteById(id);
+    return true;
     }
 
     @GetMapping("/{id}")

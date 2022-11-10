@@ -13,7 +13,7 @@ public interface LanguageService {
 
     void deleteLanguageById(int id);
 
-    boolean updateLanguage(ProgrammingLanguage language);
+    boolean updateLanguage(ProgrammingLanguage language,Integer id);
 
     boolean addLanguage(LanguageRequest language);
 

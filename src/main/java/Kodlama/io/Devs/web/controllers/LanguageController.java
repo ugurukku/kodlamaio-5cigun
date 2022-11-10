@@ -31,12 +31,12 @@ public class LanguageController {
 
     @PostMapping("/update")
     public boolean updateLanguage(@RequestBody ProgrammingLanguage language) {
-        return service.updateLanguage(language);
+        return service.updateLanguage(language, language.getId());
     }
 
     @DeleteMapping("/remove/{id}")
-    public void updateLanguage(@PathVariable("id") Integer id) {
-        return service.deleteLanguageById(id);
+    public void removeLanguageById(@PathVariable("id") Integer id) {
+         service.deleteLanguageById(id);
     }
 
     @GetMapping("/{id}")

@@ -2,9 +2,9 @@ package Kodlama.io.Devs.business.concretes;
 
 import Kodlama.io.Devs.business.abstracts.TechnologyService;
 import Kodlama.io.Devs.dataAccess.abstracts.ITechnologyRepository;
-import Kodlama.io.Devs.dataAccess.concretes.LanguageRepository;
-import Kodlama.io.Devs.dataAccess.concretes.TechnologyRepository;
+import Kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
 import Kodlama.io.Devs.entities.concretes.SubTechnology;
+import Kodlama.io.Devs.entities.dtos.TechnologyRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,16 +32,26 @@ public class TechnologyManager implements TechnologyService {
 
     @Override
     public void deleteById(int id) {
-         repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
-    public boolean updateById(SubTechnology technology) {
-        return repository.updateById(technology);
+    public boolean updateById(SubTechnology technology, Integer id) {
+        repository.deleteById(id);
+        repository.save(technology);
+        return true;
     }
 
     @Override
-    public boolean addTechnology(SubTechnology technology) {
-        return repository.addLanguage(technology);
+    public boolean addTechnology(TechnologyRequest technology) {
+        repository.
+                save(
+                        new SubTechnology(
+                                null, technology.getName(),
+                                new ProgrammingLanguage(technology.getLanguageId(),
+                                        null
+                                )
+                        ));
+        return true;
     }
 }
